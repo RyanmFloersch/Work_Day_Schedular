@@ -60,12 +60,63 @@ function setUserData(){
   }
 }
 
-function setDate(){
-  var header
+function setState(){
+
+  var blocks = document.querySelectorAll(".time-block");
+  var currentHour = "hour-" + dayjs().format('HH');
+  
+  currentHour = parseInt(currentHour.slice(5));
+  console.log(currentHour);
+  for( el of blocks){
+    el.classList.remove('past');
+    el.classList.remove('present');
+    el.classList.remove('future');
+    var elementHour = parseInt(el.id.slice(5));
+    if(elementHour == currentHour){
+      el.classList.add('present');
+    }else if(elementHour < currentHour){
+      el.classList.add('past');
+    }else if(elementHour > currentHour){
+      el.classList.add('future');
+    }
+
+  }
 
 }
 
+
+
+function getSuffix(day){
+  number = parseInt(day);
+  if( number == 1){
+    return 'st';
+  }else if(number == 2){
+    return 'nd';
+  }else if( number == 3 ){
+    return '';
+  }else{
+    return "th";
+  }
+}
+
+function setDate(){
+
+
+  var date = dayjs().format('dddd,MMMM DD' );
+  var suffix = getSuffix(dayjs().day())
+  
+  date = date + suffix;
+  console.log(date);
+
+
+  var dateArea = document.querySelector("#currentDay");
+  dateArea.innerText1 = date;
+
+}
+
+setDate();
 setUserData();
+setState();
 
 
 });
