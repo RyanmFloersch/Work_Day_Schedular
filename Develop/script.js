@@ -108,15 +108,14 @@ function setDate(){
   date = date + suffix;
   console.log(date);
 
-
   var dateArea = document.querySelector("#currentDay");
-  dateArea.innerText1 = date;
+  dateArea.innerText = date;
 
 }
 
 setDate();
+
 setUserData();
 setState();
-
 
 });
